@@ -149,6 +149,12 @@ public class OracleConstants {
     public static final String TYPE_NAME_NUMERIC = "NUMERIC";
     public static final String TYPE_UUID = "VARCHAR2(36)";
     public static final String TYPE_BOOLEAN = "VARCHAR(1)";
+    public static final String TYPE_VECTOR = "VECTOR";
+    public static final String TYPE_VECTOR_INT8 = "VECTOR_INT8";
+    public static final String TYPE_VECTOR_FLOAT32 = "VECTOR_FLOAT32";
+    public static final String TYPE_VECTOR_FLOAT64 = "VECTOR_FLOAT64";
+    public static final String TYPE_VECTOR_BINARY = "VECTOR_BINARY";
+
     public static final String OPERATION_MODIFY = "MODIFY";
     public static final String SEQ_CURRVAL = "CURRVAL";
     public static final String SEQ_NEXTVAL = "NEXTVAL";
@@ -213,6 +219,12 @@ public class OracleConstants {
     public static final int DATA_TYPE_TIMESTAMP_WITH_TIMEZONE = 101;
     public static final int DATA_TYPE_TIMESTAMP_WITH_LOCAL_TIMEZONE = 102;
     public static final int DATA_TYPE_REFCURSOR = -10;
+    public static final int DATA_TYPE_VECTOR = -105;
+    public static final int DATA_TYPE_VECTOR_INT8 = -106;
+    public static final int DATA_TYPE_VECTOR_FLOAT32 = -107;
+    public static final int DATA_TYPE_VECTOR_FLOAT64 = -108;
+    public static final int DATA_TYPE_VECTOR_BINARY = -109;
+
 
     public static final DBSEntityConstraintType CONSTRAINT_WITH_CHECK_OPTION = new DBSEntityConstraintType("V", "With Check Option", null, false, false, false, false);
     public static final DBSEntityConstraintType CONSTRAINT_WITH_READ_ONLY = new DBSEntityConstraintType("O", "With Read Only", null, false, false, false, false);
