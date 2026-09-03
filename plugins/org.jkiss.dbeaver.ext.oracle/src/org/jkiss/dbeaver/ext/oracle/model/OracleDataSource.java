@@ -675,17 +675,36 @@ public class OracleDataSource extends JDBCDataSource implements DBPObjectStatist
     @NotNull
     @Override
     public DBPDataKind resolveDataKind(@NotNull String typeName, int valueType) {
-        if ((typeName.equals(OracleConstants.TYPE_NAME_XML) || typeName.equals(OracleConstants.TYPE_FQ_XML))) {
-            return DBPDataKind.CONTENT;
+        switch (typeName) {
+            case OracleConstants.TYPE_NAME_XML,
+                 OracleConstants.TYPE_FQ_XML -> {
+
+                 return DBPDataKind.CONTENT;
+            }
+
+            case OracleConstants.TYPE_NAME_GEOMETRY,
+                 OracleConstants.TYPE_FQ_GEOMETRY -> {
+
+                return resolveGeometryAsStruct ? DBPDataKind.STRUCT : DBPDataKind.OBJECT;
+            }
+
+            case OracleConstants.TYPE_VECTOR,
+                 OracleConstants.TYPE_VECTOR_BINARY,
+                 OracleConstants.TYPE_VECTOR_FLOAT32,
+                 OracleConstants.TYPE_VECTOR_FLOAT64,
+                 OracleConstants.TYPE_VECTOR_INT8 -> {
+
+                return DBPDataKind.ARRAY;
+            }
+
+            default -> {
+                DBPDataKind dataKind = OracleDataType.getDataKind(typeName);
+                if (dataKind != null) {
+                    return dataKind;
+                }
+                return super.resolveDataKind(typeName, valueType);
+            }
         }
-        if ((typeName.equals(OracleConstants.TYPE_NAME_GEOMETRY) || typeName.equals(OracleConstants.TYPE_FQ_GEOMETRY))) {
-            return resolveGeometryAsStruct ? DBPDataKind.STRUCT : DBPDataKind.OBJECT;
-        }
-        DBPDataKind dataKind = OracleDataType.getDataKind(typeName);
-        if (dataKind != null) {
-            return dataKind;
-        }
-        return super.resolveDataKind(typeName, valueType);
     }
 
     @NotNull
